@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exceptions.html</title>
+  </head>
+  <body>
+    <p>(Look at the console.)</p>
+
+    <script>
+      /**************************************************
+       * Catching a system exception
+       **************************************************/
+
+      console.log("system before");
+
+      let badJson = "owieurowj";
+      try {
+        let data = JSON.parse(badJson);
+      } catch (err) {
+        console.log("ERROR:", err.message);
+      }
+
+      console.log("system after");
+
+      /**************************************************
+       * Throwing our own "custom" exception
+       **************************************************/
+
+      console.log("custom before");
+
+      // I want make sure 'num' is positive
+      let num = -4;
+
+      try {
+        if (num <= 0) {
+          throw new Error("number is not positive");
+        }
+        console.log("num is positive");
+      } catch (err) {
+        console.log("ERROR:", err.message);
+      }
+
+      console.log("custom after");
+    </script>
+  </body>
+</html>

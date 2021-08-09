@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promises</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      //three states : pending, fulfilled, rejected.
+
+      // const firstPromise = new Promise((resolve, reject) => {
+      //   const somethingHappens = true;
+
+      //   if (somethingHappens) {
+      //     resolve("Resolving and keeping the promise.");
+      //   } else {
+      //     reject("Rejected a.k.a breaking the promise.");
+      //   }
+      // });
+
+      // const slowPromise = new Promise((resolve, reject) => {
+      //   setTimeout(() => {
+      //     resolve("slow promises are also kept.");
+      //   }, 5000);
+      // });
+
+      // slowPromise.then((result) => {
+      //   console.log(result);
+      // });
+
+      // firstPromise
+      //   .then((value) => {
+      //     return value;
+      //   })
+      //   .then((nextValue) => {
+      //     console.log(nextValue + " and then some ");
+      //   })
+      //   .catch((mistake) => {
+      //     console.error(mistake);
+      //   });
+
+      //   ES 2016 fetch me a promise
+
+      // const peopleInfo = fetch("https://jsonplaceholder.typicode.com/users")
+      //   .then((response) => {
+      //     return response.json();
+      //   })
+      //   .then((data) => {
+      //     console.log(data);
+      //     data.forEach((user) => {
+      //       console.log("Welcome ! ", user.name);
+      //     });
+      //   });
+
+      // console.log("hey got the info yet ?");
+
+      //ES 2017 hallelujah async and await
+
+      //tell them right away
+
+      // async function secondFunction() {
+
+      // }
+
+      const secondFunction = async () => {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/users"
+        );
+        //wait before doing anything else...
+
+        const jsonData = await response.json();
+        //   also waiting for this.
+
+        return jsonData;
+      };
+
+      const certainPeople = {
+        person: [],
+      };
+
+      const nextFunction = async () => {
+        const peopleData = await secondFunction();
+        certainPeople.person = peopleData;
+        console.log(certainPeople.person);
+      };
+
+      console.log(nextFunction()); //this will be empty.
+
+      //to work with a data via async function, we need to wait.
+    </script>
+  </body>
+</html>

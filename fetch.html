@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetch.html</title>
+  </head>
+  <body>
+    <p>(Look at the console.)</p>
+
+    <script>
+      /**************************************************
+       * A comparison of two ways to use fetch():
+       * - async / await
+       * - .then() / .catch()
+       **************************************************/
+
+      const USERS_URL = "https://jsonplaceholder.typicode.com/users/";
+
+      /**************************************************
+       * async / await
+       **************************************************/
+
+      async function fetchUsers_Await() {
+        let users = [];
+
+        // Use an exception (with try/catch) to attempt something that
+        // may cause an error.
+        // More about exceptions: https://javascript.info/try-catch
+
+        try {
+          let response = await fetch(USERS_URL);
+          if (response.ok) {
+            // Acknowledgement (but no data yet) received from server
+            users = await response.json(); // wait for data
+          } else {
+            // Server responded, couldn't satisfy request
+            console.log(
+              "Server responded:",
+              response.status,
+              response.statusText
+            );
+          }
+        } catch (err) {
+          // Server not contacted
+          console.log("Server not contacted:", err.message);
+        }
+
+        return users;
+      }
+
+      async function printUsers_Await() {
+        let users = await fetchUsers_Await();
+        // Do something with users
+        console.log("users (await):", users);
+      }
+
+      // Do the fetch
+      printUsers_Await(); // this does not wait
+      console.log("after printUsers_Await()");
+
+      /**************************************************
+       * .then() / .catch()
+       **************************************************/
+
+      function fetchUsers_Then() {
+        let users = [];
+
+        // The .catch() used below is similar in purpose to the catch
+        // in try/catch used above: "catch" errors and attempt to recover
+        const USERS_URL_2 =
+          "https://jsonplaceholder.typicode.com/jlahdfjadflhadf/";
+
+        fetch(USERS_URL_2)
+          .then((response) => {
+            // Got an acknowledgement (but no data yet) from the server
+            if (!response.ok) {
+              throw new Error(
+                `Server responded: ${response.status}: ${response.statusText}`
+              );
+            }
+
+            return response.json(); // the .then() below will wait for data
+            //return response;
+          })
+          .then((data) => {
+            // Do something with data
+            console.log("users (.then):", data);
+          })
+          .catch((err) => {
+            // An error occurred, thrown either by me or fetch()
+            console.log("ERROR:", err.message);
+          });
+      }
+
+      // Do the fetch
+      fetchUsers_Then(); // this does not wait
+      console.log("after printUsers_Then()");
+    </script>
+  </body>
+</html>
