@@ -24,6 +24,8 @@ npm install express
 
 # Start your cat server!
 node catapp.js
+(in order to avoid continuous restart of the server, install nodemon using 'npm install nodemon')
+(with nodemon instead of 'node catapp.js' do 'nodemon catapp.js')
 */
 
 
