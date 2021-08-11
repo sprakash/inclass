@@ -31,6 +31,7 @@ const express = require('express');
 const app = express();
 const port = 3000; 
 
+app.use(express.json());
 // Print some info for every request
 app.use(function (req, res, next) {
     console.log('Got a request:', req.method, req.originalUrl);
