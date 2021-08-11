@@ -1,8 +1,8 @@
 /*
 # Start your cat server!
 node catapp.js
-(in order to avoid continuous restart of the server, install nodemon using 'npm install nodemon')
-(with nodemon instead of 'node catapp.js' do 'nodemon catapp.js')
+(in order to avoid continuous restart of the server everytime you make a change in your catapp.js, 
+install nodemon using 'npm install nodemon'.  Now with nodemon instead of 'node catapp.js' do 'nodemon catapp.js')
 */
 
 
@@ -11,6 +11,7 @@ const app = express();
 const port = 3000; 
 
 app.use(express.json());
+
 // Print some info for every request
 app.use(function (req, res, next) {
     console.log('Got a request:', req.method, req.originalUrl);
