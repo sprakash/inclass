@@ -1,27 +1,4 @@
 /*
-README! Here's how to install this little demo. Type the following
-lines into a terminal.
-
-NOTE: The lines starting with '#' are comments that describe
-what the commands are doing; don't type in the comments:
-
-# Create a project directory called 'catapp'
-mkdir catapp
-
-# Make that directory your current directory
-cd catapp
-
-# Place catapp.js in that directory
-
-# (In this example I'm copying it from my Mac desktop)
-cp /Users/rudolf/Desktop/catapp.js catapp.js
-
-# Initialize npm and accept the defaults
-npm init -y
-
-# Install Express
-npm install express
-
 # Start your cat server!
 node catapp.js
 (in order to avoid continuous restart of the server, install nodemon using 'npm install nodemon')
